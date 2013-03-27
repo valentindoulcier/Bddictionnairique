@@ -121,15 +121,15 @@ public class HibernateUtils {
 	}
 
 	public static Session getInstanceMaster() {
-		setConnecteMaster(true);
+		//setConnecteMaster(true);
 		if (sessionFactoryMaster == null) { // Premier appel
 			try {
 
 				Configuration configurationMaster = new Configuration();
 				configurationMaster.configure("hibernateMaster.cfg.xml");
 
-				try {
-					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateMaster.properties");
+				try {			
+					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateMaster.properties");
 					Properties propertiesMaster = new Properties();
 					propertiesMaster.load(is);
 					//propertiesMaster.load(new FileReader("src/hibernateMaster.properties"));
@@ -150,7 +150,16 @@ public class HibernateUtils {
 				setConnecteMaster(false);
 			}
 		}
-		return sessionFactoryMaster.openSession();
+		Session test = null;
+		
+		try {
+			test = sessionFactoryMaster.openSession();
+		} catch(HibernateException e) {
+			logger.fatal("Erreur ouverture de session");
+			JOptionPane.showMessageDialog(null, "Session");
+		}
+		
+		return test;
 	}
 
 	public static Session changeInstanceMaster(Properties properties) {

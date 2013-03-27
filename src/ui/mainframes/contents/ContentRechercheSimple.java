@@ -142,7 +142,7 @@ public class ContentRechercheSimple extends JPanel {
 		    maRecherche.getListeDictionnaire().add(entry.getValue());
 		}
 		
-		HeadwordDAO headwords = new HeadwordDAO("local");
+		HeadwordDAO headwords = new HeadwordDAO("master");
 
 		for(String dictionnaire : maRecherche.getListeDictionnaire()) {
 			

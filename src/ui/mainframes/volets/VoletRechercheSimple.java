@@ -134,7 +134,7 @@ public class VoletRechercheSimple extends JPanel {
 	public JPanel listeDico(Application application) {
 
 		logger.debug("4 - Chargement des dictionnaires");
-		DictionnairesDAO dictionnaires = new DictionnairesDAO("local");
+		DictionnairesDAO dictionnaires = new DictionnairesDAO("master");
 		List<?> dico = null;
 		
 		
